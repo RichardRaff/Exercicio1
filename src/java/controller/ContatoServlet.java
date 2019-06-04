@@ -131,9 +131,9 @@ public class ContatoServlet extends HttpServlet {
             c.setTelefone(telefone);
             c.setVisibilidade(1);
 
-            ContatoJpaController cjpa = new ContatoJpaController(Persistence.createEntityManagerFactory("Exercicio1PU"));
+            ContatoJpaController CJPA = new ContatoJpaController(Persistence.createEntityManagerFactory("Exercicio1PU"));
             try {
-                cjpa.edit(c);
+                CJPA.edit(c);
             } catch (Exception e) {
                 Logger.getLogger(ContatoServlet.class.getName()).log(Level.SEVERE, null, e);
             }

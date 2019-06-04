@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import model.Contato;
@@ -70,7 +71,7 @@ public class ContatoJpaController implements Serializable {
 
     public void destroy(Integer id) throws NonexistentEntityException {
         EntityManager em = null;
-        try { //em é entitymanager
+        try {
             em = getEntityManager();
             em.getTransaction().begin();
             Contato contato;
@@ -80,8 +81,8 @@ public class ContatoJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The contato with id " + id + " no longer exists.", enfe);
             }
-            // em.remove(contato);
             contato.setVisibilidade(0);
+            //em.remove(contato);
             em.merge(contato);
             em.getTransaction().commit();
         } finally {
@@ -105,6 +106,7 @@ public class ContatoJpaController implements Serializable {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
             cq.select(cq.from(Contato.class));
             Query q = em.createQuery(cq);
+
             if (!all) {
                 q.setMaxResults(maxResults);
                 q.setFirstResult(firstResult);
@@ -124,6 +126,17 @@ public class ContatoJpaController implements Serializable {
         }
     }
 
+    public List<Contato> findContatoByName(String nome) {
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        Query q = em.createQuery("SELECT c FROM Contato c WHERE c.nome = :nome");
+        q.setParameter("nome", nome);
+        List result = q.getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return result;
+    }
+
     public int getContatoCount() {
         EntityManager em = getEntityManager();
         try {
@@ -136,15 +149,4 @@ public class ContatoJpaController implements Serializable {
             em.close();
         }
     }
-    public List<Contato> findContatoByName(String nome) {
-        EntityManager em = getEntityManager();
-        em.getTransaction().begin();
-        Query q = em.createQuery("SELECT c FROM Contato c WHERE c.nome = :nome");
-        q.setParameter("nome", nome);
-        List result = q.getResultList();
-        em.getTransaction().commit();
-        em.close();
-        return result;
-    }
-
 }

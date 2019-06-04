@@ -4,9 +4,17 @@
         <servlet-name>ContatoServlet</servlet-name>
         <servlet-class>controller.ContatoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ContatoServlete</servlet-name>
+        <servlet-class>controller.ContatoServlete</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ContatoServlet</servlet-name>
         <url-pattern>/ContatoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContatoServlete</servlet-name>
+        <url-pattern>/ContatoServlete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

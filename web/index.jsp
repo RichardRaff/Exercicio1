@@ -35,7 +35,7 @@
                     </li>
                 </ul>
 
-                <form class="form-inline my-2 my-lg-0" action="ContatoServlet" method="POST">
+                <form class="form-inline my-2 my-lg-0" action="ContatoServlete" method="POST">
                     <input class="form-control mr-sm-2" type="search" placeholder="Pesquise o contato aqui" name="pesqNome" aria-label="Search">
                     <button class="btn btn-success" type="submit" name="pesquisar"> Pesquisar </button>
                 </form>
@@ -49,7 +49,7 @@
 
             <h1 class="text-center" style="padding:40px;"> Cadastro de Líderes </h1>
 
-            <form name="formLider" id="formLider" method="post" action="ContatoServlet">
+            <form name="formLider" id="formLider" method="post" action="ContatoServlete">
 
                 <div class="form-group row">
 
@@ -126,7 +126,7 @@
                                      > Alterar </button> </td>
 
                         
-                        <td><form action="ContatoServlet" method="post">
+                        <td><form action="ContatoServlete" method="post">
                                 <button type="submit" class="btn btn-danger" name="excluir" id="excluir" value="<%=c.getIdcontato()%>">Excluir</button></form></td>
 
                     </tr>
@@ -149,7 +149,7 @@
 
                         <div class="modal-body">
 
-                            <form name="formContato" id="formContato" method="post" action="ContatoServlet">
+                            <form name="formContato" id="formContato" method="post" action="ContatoServlete">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> ID </span>
